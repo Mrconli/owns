@@ -1,6 +1,6 @@
 /**
- * const $ = new Env("望潮")
- * cron 12 7 * * *  wangchao.js
+ * 望潮
+ * cron 12 12 * * *  wangchao.js
  * ========= 青龙--配置文件 ===========
  * # 项目名称
  * export wangchao_data='token @ token'
