@@ -14,10 +14,10 @@ const $ = new Env("得物心愿森林");
 let envSplitor = ['\n']  //多账号隔开方式，默认换行可自定义
 let dwHelp = 2
 ///////////////////////////////维护参数自行更换//////////////////////////////////
-let deviceTrait = 'RM1011'                   //设备型号
-let deviceId = '1554188888888218'         //设备标识
-let appVersion = '5.18.3.0'                     //软件版本
-let defaultUA = 'Mozilla/5.0 (Linux; Android 12; RMX3031 Build/SP1A.210812.016; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/97.0.4692.98 Mobile Safari/537.36/duapp/5.17.2(android;12)'                    //默认UA
+let deviceTrait = 'iPhone'                   //设备型号
+let deviceId = 'UUID36e2317e222140d49b42b7926a0effad'         //设备标识
+let appVersion = '5.19.1'                     //软件版本
+let defaultUA = 'Mozilla/5.0 (iPhone; CPU iPhone OS 16_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148/duapp/5.19.1'                    //默认UA
 let helpcode = '4BDH%20%C5%93%F0%9F%92%AE%F0%9F%8C%B4%F0%9F%98%BB%F0%9F%98%BB%F0%9F%91%A9%F0%9F%92%AC%F0%9F%8C%BE%C5%93'
 //需要助力账号的互助码  搜索keyword=后面的值 #Referer、url和 响应体 里都有，若果是emoji需要找没转码的，或者自行转码后再放入脚本
 
