@@ -21,7 +21,7 @@ import json
 
 now = str(round(time.time()*1000))
 cookies= os.getenv("zj365ck")
-timenow=datetime.date.today()
+timenow = datetime.date.today()
 
 class DY:
     def __init__(self, cookie):
@@ -92,7 +92,7 @@ if __name__ == "__main__":
     cookies = cookies.split("@")
     print(f"【中建365】共检测到{len(cookies)}个账号")
     print(f"==========================================")
-    print(f"中建365   by:Mrconli\n7.22 每日签到0.18\n")
+    print(f"中建365   by:Mrconli\n 每日签到0.1\n")
     i = 1
     for cookie in cookies:
         print(f"========【账号{i}】开始运行脚本========")
