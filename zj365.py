@@ -1,116 +1,105 @@
-import requests,os,time,sys,datetime
-from notify import send
 '''
-new Env("中健365")
-每日签到领现金0.1-0.2，自动秒到到账微信
-入口：#小程序://中健365达人
-抓包：https://dc.zhongjian365.com/域名里面的X-Auth-Key
-变量名：zjck，多号换行
-cron 0 7 * * *
+new Env("中建365达人签到抽奖")
+每日签到领现金0.18，到账微信
+入口：#微信小程序://中健365达人//
+抓包：https://dc.zhongjian365.com/域名里面的 X-Auth-Key
+变量名：zj365ck，多号 换行 隔开
+cron 6 7 * * *
 v1.0
 '''
 
-notify = True#关闭通知为False
+import datetime
+from lib2to3.pygram import python_grammar_no_print_and_exec_statement
+import os
+import time
+import random
+import base64
+import requests
+import hashlib
+import uuid
+import json
 
-# version = sys.version.split(" ")
-# ver = version[0].split(".")
-# if int(ver[1]) != 10:
-#     print(f"你的青龙python版本为{sys.version},请使用py3.10运行此脚本")
+now = str(round(time.time()*1000))
+cookies= os.getenv("zj365ck")
 
-ck = os.getenv("zjck")
-ck1 = ck.split("\n")
-v = 1.0
-def sign():
-   url = "https://dc.zhongjian365.com/api/activity_clockin/signIn"
-   payload = ""
-   headers = {
-      'X-Auth-Key': au,
-      'xweb_xhr': '1',
-      'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
-      'Content-Type': 'application/json',
-      'Accept': '*/*',
-      'Host': 'dc.zhongjian365.com',
-      'Connection': 'keep-alive'
-   }
+class DY:
+    def __init__(self, cookie):
+        self.cookie = cookie.split("#")[0]
+        
 
-   res = requests.request("POST", url, headers=headers, data=payload)
-   if res.status_code == 200:
-      if res.json().get("code") ==200:
-         print(f"{res.json().get('msg')}")
-      elif res.json().get("code") ==201:
-         print(f"{res.json().get('msg')}")
-      elif res.json().get("code") ==202:
-         print(f"{res.json().get('msg')}")
-      elif res.json().get("code") ==302:
-         print(f"{res.json().get('msg')},填写正确数据")
-      else:
-         print("未知错误",res.json())
-   else:
-      print("数据错误或者失效",res.json())
-def cj():
-    url = "https://dc.zhongjian365.com/api/activity_clockin/luckyDraw"
+    def run(self):
+        print(f"========开始进行今日签到========")
+        point_ss , point_s = self.sign()
+        print(f"签到奖励--状态码：{point_ss}")
+        print(f"签到奖励--{point_s}")
+        print(f"========开始进行抽奖========")
+        self.luckdraw()
 
-    payload = '{"to_day":"'+str(datetime.datetime.now()).split(" ")[0]+'"}'
-    headers = {
-        'Host': 'dc.zhongjian365.com',
-        'Connection': 'keep-alive',
-        'Content-Length': '23',
-        'referer': 'https://servicewechat.com/wx064ad776729638f4/80/page-frame.html',
-        'X-Auth-Key': au,
-        'xweb_xhr': '1',
-        'user-agent': 'Mozilla/5.0 (Windows NT 6.2; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36 MicroMessenger/7.0.20.1781(0x6700143B) NetType/WIFI MiniProgramEnv/Windows WindowsWechat/WMPF XWEB/6945',
-        'Content-Type': 'application/json',
-        'Accept': '*/*',
-        'Sec-Fetch-Site': 'cross-site',
-        'Sec-Fetch-Mode': 'cors',
-        'Sec-Fetch-Dest': 'empty',
-        'Accept-Encoding': 'gzip, deflate, br',
-        'Accept-Language': 'zh-CN,zh',
 
-    }
-    res = requests.request("POST", url, headers=headers, data=payload)
-    if res.status_code == 200:
-        if res.json().get("code") == 200:
-            print(f"抽奖获得{res.json().get('data').get('amount')}元")
-        elif res.json().get("code") == 201:
-            print(f"{res.json().get('msg')}")
-        elif res.json().get("code") == 202:
-            print(f"{res.json().get('msg')}")
-        elif res.json().get("code") == 302:
-            print(f"{res.json().get('msg')},填写正确数据")
+    def sign(self):
+        url = f"https://dc.zhongjian365.com/api/activity_clockin/signIn"
+        payload = '{}'
+        headers = {
+           'X-Auth-Key': self.cookie,
+           'xweb_xhr': '1',
+           'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
+           'Content-Type': 
+           'application/json',
+           'Accept': '*/*',
+           'Host': 'dc.zhongjian365.com',
+           'Connection': 'keep-alive'
+        }
+        response = requests.request("POST", url=url, headers=headers , data=payload)
+        if response.status_code == 200:
+            if response.json().get("code") == "200":
+                point_s = "签到成功"
+                point_ss = response.json()
+                return point_s , point_ss
+            else:
+                point_s = response.json().get('code')
+                point_ss = response.json().get('msg')
+                return point_s  , point_ss
+
+    def luckdraw(self):
+        url = f"https://dc.zhongjian365.com/api/activity_clockin/luckyDraw"
+        payload = '{"to_day":"'+str(datetime.datetime.now()).split(" ")[0]+'"}'
+        headers = {
+           'X-Auth-Key': self.cookie,
+           'xweb_xhr': '1',
+           'User-Agent': 'Apifox/1.0.0 (https://apifox.com)',
+           'Content-Type': 
+           'application/json',
+           'Accept': '*/*',
+           'Host': 'dc.zhongjian365.com',
+           'Connection': 'keep-alive'
+        }
+        response = requests.request("POST", url=url, headers=headers , data=payload)
+        if response.status_code == 200:
+            if response.json().get("code") == "200":
+                point_lk = "抽奖成功"
+                name = response.json().get('data').get('prize_name')
+                amount = response.json().get('data').get('amount')
+                print(f"抽奖奖励--状态码：{point_lk}")
+                print(f"抽奖奖励--[{name}]{amount}元")
+            else:
+                point_lk = response.json().get('code')
+                point_ss = response.json().get('msg')
+                print(f"抽奖奖励--状态码：{point_lk}")
+                print(f"抽奖奖励--{point_ss}")
+
+if __name__ == "__main__":
+    cookies = cookies.split("\n")
+    print(f"【中建365达人签到抽奖】共检测到{len(cookies)}个账号")
+    print(f"==========================================")
+    print(f"中建365达人   by:Mrconli\n 每日签到0.1-0.2r\n")
+    i = 1
+    for cookie in cookies:
+        print(f"========【账号{i}】开始运行脚本========")
+        i += 1
+        DY(cookie).run()
+        
+        time.sleep(random.randint(5, 10))
+        if i > len(cookies):
+            break
         else:
-            print("未知错误", res.json())
-    else:
-        print("数据错误或者失效", res.json())
-
-log_content = ''
-class LoggerWriter:
-    def __init__(self, level):
-        self.level = level
-
-    def write(self, message):
-        global log_content
-        self.level.write(message)
-        log_content += message
-
-    def flush(self):
-        return None
-sys.stdout = LoggerWriter(sys.stdout)
-gg = requests.request("GET", "https://ghproxy.com/https://raw.githubusercontent.com/241793/bucai2/main/gg")
-if gg.status_code ==200:
-    print(gg.text)
-else:
-    print("网路连接超时")
-print(f"当前执行【中健365签到现金】 v{v}")
-print(f"检测有【{len(ck1)}】个号")
-for i in range(len(ck1)):
-   au = ck1[i]
-   print(f"==========账号{i+1}开始运行==========")
-   sign()
-   time.sleep(2)
-   cj()
-   if len(ck1)> i+1:
-      print("\n=5秒后运行下一账号=\n")
-      time.sleep(5)
-if notify == True:
-   send("中健365签到通知",log_content)
+            print("========延迟些许,准备下一账号========")
