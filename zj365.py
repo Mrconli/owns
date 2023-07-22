@@ -91,7 +91,7 @@ if __name__ == "__main__":
     cookies = cookies.split("\n")
     print(f"【中建365达人签到抽奖】共检测到{len(cookies)}个账号")
     print(f"==========================================")
-    print(f"中建365达人   by:Mrconli\n 每日签到0.1-0.2r\n")
+    print(f"中建365达人签到抽奖   by:Mrconli\n 每日签到0.1-0.2r\n")
     i = 1
     for cookie in cookies:
         print(f"========【账号{i}】开始运行脚本========")
@@ -102,4 +102,4 @@ if __name__ == "__main__":
         if i > len(cookies):
             break
         else:
-            print("========延迟些许,准备下一账号========")
+            print("\n========延迟些许,准备下一账号========\n")
