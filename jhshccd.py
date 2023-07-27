@@ -4,8 +4,8 @@
 # 格式 ccdck = wParam参数值#xxx
 # 定时：一天两次
 
-new Env('建行生活奋斗季cc豆')
-cron: 22 8,19 * * *
+# new Env('建行生活奋斗季cc豆')
+# cron: 22 8,19 * * *
 
 import os
 import random
