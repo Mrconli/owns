@@ -9,8 +9,8 @@
 # 格式 ydypCk = Authorization值#手机号#authToken的值
 # 定时：一天两三次
 
-new Env('中国移动云盘')
-cron: 12 6,19 * * *
+#new Env('中国移动云盘')
+#cron: 12 6,19 * * *
 
 import os
 import random
