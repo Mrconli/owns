@@ -7,8 +7,8 @@
 # 定时 : 一天一次
 # 每日随机提现，默认不开启，没抓
 
-new Env('美团每日赚钱APP')
-cron: 2 6,11,19 * * *
+# new Env('美团每日赚钱APP')
+# cron: 2 6,11,19 * * *
 
 import os
 import random
@@ -18,7 +18,7 @@ import time
 
 import requests
 
-cookies = os.getenv("mtck")
+cookies = os.getenv("mt50ck")
 ua = ''
 draw = 0  # 为0不抽奖，为1抽奖。抽奖是没有问题，自行决定
 
