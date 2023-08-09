@@ -20,7 +20,7 @@ import requests
 
 cookies = os.getenv("mt50ck")
 ua = ''
-draw = 0  # 为0不抽奖，为1抽奖。抽奖是没有问题，自行决定
+draw = 1  # 为0不抽奖，为1抽奖。抽奖是没有问题，自行决定
 
 
 class MT:
