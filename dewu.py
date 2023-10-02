@@ -67,7 +67,7 @@ def get_url_key_value(url, key):
 
 
 class DeWu:
-    WATERTING_G: int = 40  # 每次浇水克数
+    WATERTING_G: int = 100  # 每次浇水克数
     REMAINING_G: int = 1800  # 最后浇水剩余不超过的克数
 
     def __init__(self, x_auth_token, index, waterting_g=WATERTING_G, remaining_g=REMAINING_G):
