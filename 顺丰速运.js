@@ -16,7 +16,7 @@ https://mcs-mimp-web.sf-express.com/mcs-mimp/share/app/shareRedirect
 
 cron: 11 6,9,12,15,18 * * *
 */
-const $ = new Env("顺丰速运-MK集团频道：https://t.me/Bigyellowtl");
+const $ = new Env("顺丰速运");
 
 const _0x2a13ea = _0x3554;
 (function (_0x1c226e, _0x5ca59b) {
