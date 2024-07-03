@@ -11,7 +11,7 @@
 export bwcjck=""
 
 cron: 0 0,7 * * *
-const $ = new Env("MK霸王茶姬签到");
+const $ = new Env("霸王茶姬签到");
 """
 import requests
 import re
