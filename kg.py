@@ -1,6 +1,7 @@
 """
-酷瓜叼毛一个
-每天0.1毛抓refreshToken,openid,appid就可以了(首次登陆才有这个包没抓到重新进入去抓)
+酷瓜好物微信小程序，环境变量kg
+每天0.1元自动提现至微信，拉人头比黑
+抓refreshToken,openid,appid就可以了(首次登陆才有这个包没抓到重新进入去抓)
 分隔符#多账户换行
 """
 import os
@@ -75,11 +76,11 @@ def tx(token, openid, appid):
         print(f"提现失败{codemsg}")
 
 if __name__ == "__main__":
-    mkkg = os.environ.get('mkkg')
-    if not mkkg:
-        print("请设置环境变量mkkg")
+    kg = os.environ.get('kg')
+    if not kg:
+        print("请设置环境变量kg")
     else:
-        kghw_list = mkkg.split('\n')
+        kghw_list = kg.split('\n')
         for num, kghw_item in enumerate(kghw_list, start=1):
             appid, openid, refreshToken = kghw_item.split('#')
             print(f"=====开始执行第{num}个账号任务=====")
