@@ -7,10 +7,6 @@ import os
 import requests
 import time
 import random
-response = requests.get("https://mkjt.jdmk.xyz/mkjt.txt")
-response.encoding = 'utf-8'
-txt = response.text
-print(txt)
 
 def refresh_token(refreshToken):
     url = "https://www.kugua.com/wxapp/refreshToken"
