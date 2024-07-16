@@ -15,7 +15,7 @@ export tptCookie="eyJ0xxxxxxxxxxxxxxxxxx#18f5609fe20-xxxxxxxx-xxxxx-xxxxx"
 
 cron: 14 6,18 * * *
 */
-const $ = new Env("太平通-MK集团频道：https://t.me/Bigyellowtl");
+const $ = new Env("太平通");
 
 const _0x433672 = _0x52b7;
 function _0x5de7() {
