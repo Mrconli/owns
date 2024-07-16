@@ -1,7 +1,8 @@
+"""
 const $ = new Env("望潮")
 cron 0 9 * * *
-
-# export wangchao="手机号#密码"
+export wangchao="手机号#密码"
+"""
 
 #  本地不能抽奖的，配置代理的url，不写为本地。
 dlurl = ''
