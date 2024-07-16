@@ -1,11 +1,12 @@
 # cron 0 0 9 * * *
+# export wangchao="手机号#密码"
+
 #  代理的url 不写为不用代理
 dlurl = ''
 
 print("""
-注册后改密码，环境变量wangchao 多号新建或&间隔
-手机号#密码
-不抽奖的可自行更改157行的deviceId
+v2014.07.06
+不知道是谁的本改的，看不懂也不会加密，可自行修改
 """)
 
 import hashlib
@@ -332,7 +333,7 @@ class Ghdy:
             today = datetime.today().strftime('%Y%m%d')
             c_r = requests.get(f'https://xmt.taizhou.com.cn/prod-api/user-read-count/count/{today}', headers=c_headers)
             if '成功' in c_r.json()['msg']:
-                xx = f'✅全部浏览完成，准备开始抽红包吧！'
+                xx = f'🎉🎉全部浏览完成，准备开始抽红包吧！'
                 print(xx)
                 self.msg += xx + '\n'
             else:
@@ -394,7 +395,7 @@ class Ghdy:
                 'activityId': '67',
             }
             r = requests.post(url, headers=headers, data=data)
-            if '成功' in r.json()['message']:
+            if '200' in r.json()['message']:
                 xx = f'✅抽奖成功'
                 print(xx)
                 self.msg += xx + '\n'
