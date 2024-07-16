@@ -1,12 +1,14 @@
-# cron 0 0 9 * * *
+const $ = new Env("望潮")
+cron 0 9 * * *
+
 # export wangchao="手机号#密码"
 
-#  代理的url 不写为不用代理
+#  本地不能抽奖的，配置代理的url，不写为本地。
 dlurl = ''
 
 print("""
 v2014.07.06
-不知道是谁的本改的，看不懂也不会加密，可自行修改
+不知道是谁的本改的，看不懂也不会修改，可自行修改。
 """)
 
 import hashlib
@@ -440,9 +442,9 @@ class Ghdy:
                     xx = f'⏰{i["createTime"]}: {i["awardName"]}'
                     print(xx)
                     self.msg += xx + '\n'
-                send("🔔原神启动", self.msg)
+                send("🔔启动", self.msg)
             else:
-                send("🔔原神启动", self.msg)
+                send("🔔启动", self.msg)
         except Exception as e:
             print(e)
 
@@ -526,7 +528,7 @@ def choujiang(account, dlurl):
             name = response.json()['data']['account']['nick_name']
             return message, account_id, session_id, name
         except Exception:
-            print('出错啦！')
+            print('❌出错啦！')
             return None, None, None, None
 
     # 登录并获取 JSESSIONID
@@ -610,16 +612,16 @@ def choujiang(account, dlurl):
         if jsessionid:
             cj(jsessionid)
         else:
-            print(f"获取 JSESSIONID 失败")
+            print(f"❌获取 JSESSIONID 失败")
     else:
-        print(f"账号 {phone} 登录失败")
+        print(f"❌账号 {phone} 登录失败")
 
 
 if __name__ == '__main__':
     print = partial(print, flush=True)
     token = get_environ("wangchao", '')
     cks = token.split("&")
-    print("🔔检测到{}个ck记录\n🔔".format(len(cks)))
+    print("🔔检测到{}个账号记录🔔".format(len(cks)))
     for ck_all in cks:
         ck = ck_all.split("#")
         run = Ghdy(ck)
