@@ -15,7 +15,7 @@ uid#refreshToken#备注
 
 cron: 16 7,8,20 * * *
 */
-const $ = new Env("永辉生活-MK集团频道：https://t.me/Bigyellowtl");
+const $ = new Env("永辉生活");
 
 const _0x5827a5 = _0x2f9b;
 (function (_0xb42f5f, _0x591081) {
