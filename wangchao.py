@@ -107,7 +107,7 @@ class Ghdy:
             "Accept-Encoding": "gzip"
         }
         data = f'client_id=10019&password={m}&phone_number={s}'
-        #  print(data)
+        print(data)
 
         r = requests.post(url, headers=head, data=data)
         time.sleep(2)
@@ -157,13 +157,13 @@ class Ghdy:
             params = {
                 'id': self.account,
                 'sessionId': self.session,
-                'deviceId': '00000000-699e-76bc-ffff-ffff9e3d172b'
+                'deviceId': '00000000-699e-76bc-ffff-ffff9e3d173b'
             }
             r = requests.get(url, params=params, headers=headers)
             if '成功' in r.json()['msg']:
-                # xx = f'🚀登录成功：{r.json()["data"]["nickName"]}'
-                # self.msg += xx + '\n'
-                # print(xx)
+                xx = f'🚀登录成功：{r.json()["data"]["nickName"]}'
+                self.msg += xx + '\n'
+                print(xx)
                 jsessionid = r.cookies
                 cookies_dict = jsessionid.get_dict()
                 for k, y in cookies_dict.items():
@@ -217,11 +217,9 @@ class Ghdy:
                 self.msg += xx + '\n'
 
         except Exception as e:
-            print(e
-            )
+            print(e)
 
     def look(self):
-
         try:
             for idd, new_id in self.id_dict.items():
                 a8 = generate_random_string(8)
@@ -261,7 +259,7 @@ class Ghdy:
                         xx = f'✅开始浏览《{r.json()["data"]["article"]["list_title"]}》'
                         print(xx)
                     else:
-                        print('=>文章不存在？我就要读!!<=')
+                        print('=>文章不存在？穿越时空我也要读!!<=')
                     time.sleep(3)
                     current_timestamp = int(time.time() * 1000)
                     sha = f'&&{idd}&&TlGFQAOlCIVxnKopQnW&&{current_timestamp}'
@@ -300,7 +298,7 @@ class Ghdy:
                         print(xx)
                         self.msg += xx + '\n'
                     elif '重新' in r.json()['msg']:
-                        xx = f'⛔️浏览失败：{r.json()["message"]}'
+                        xx = f'❌浏览失败：{r.json()["message"]}'
                         print(xx)
                         self.msg += xx + '\n'
                     else:
@@ -308,7 +306,7 @@ class Ghdy:
                         print(xx)
                         self.msg += xx + '\n'
                 elif '不存在' in r.json()['message']:
-                    xx = f'⛔️浏览失败：{r.json()["message"]}'
+                    xx = f'❌浏览失败：{r.json()["message"]}'
                     print(xx)
                     self.msg += xx + '\n'
 
@@ -336,7 +334,7 @@ class Ghdy:
             today = datetime.today().strftime('%Y%m%d')
             c_r = requests.get(f'https://xmt.taizhou.com.cn/prod-api/user-read-count/count/{today}', headers=c_headers)
             if '成功' in c_r.json()['msg']:
-                xx = f'🎉🎉全部浏览完成，准备开始抽红包吧！'
+                xx = f'🎉🎉全部浏览完成，准备开始抽🧧红包吧！'
                 print(xx)
                 self.msg += xx + '\n'
             else:
@@ -434,9 +432,9 @@ class Ghdy:
             }
             jl_r = requests.get('https://srv-app.taizhou.com.cn/tzrb/userAwardRecordUpgrade/pageList', params=jl_params,
                                 headers=jl_headers)
-            if '成功' in jl_r.json()['message']:
+            if '200' in jl_r.json()['message']:
                 jl_list = jl_r.json()['data']['records']
-                xx = '🎁抽奖记录🎁'
+                xx = '🎁近10次抽奖记录🎁'
                 print(xx)
                 self.msg += xx + '\n'
                 for i in jl_list:
