@@ -1,12 +1,14 @@
-dlurl = ''  # 记得加白
+
 #  代理的url 不写为不用代理
+dlurl = ''
 
 print("""
-二改的 谁的本我也不知道！！！修复抽奖！！！！！！！
 每天早上九点运行就行 cron:0 0 9 * * *
-注册后改密码，环境变量wangchao 多号新建或&隔
-手机号密码
+注册后改密码，环境变量wangchao 多号新建或&间隔
+手机号#密码
+不抽奖的可自行更改157行的deviceId
 """)
+
 import hashlib
 import random
 import string
@@ -152,7 +154,7 @@ class Ghdy:
             params = {
                 'id': self.account,
                 'sessionId': self.session,
-                'deviceId': '00000000-699e-76bc-ffff-ffff9e3d172a'
+                'deviceId': '00000000-699e-76bc-ffff-ffff9e3d172b'
             }
             r = requests.get(url, params=params, headers=headers)
             if '成功' in r.json()['msg']:
@@ -615,7 +617,7 @@ def choujiang(account, dlurl):
 
 if __name__ == '__main__':
     print = partial(print, flush=True)
-    token = get_environ("wangchao", '17633912479#lxg021002')
+    token = get_environ("wangchao", '')
     cks = token.split("&")
     print("🔔检测到{}个ck记录\n🔔".format(len(cks)))
     for ck_all in cks:
